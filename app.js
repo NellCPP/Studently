@@ -20,15 +20,15 @@ function buildRankSteps(){
   ["Master","Grandmaster","Epic","Legend"].forEach(group=>{
     DIVS.forEach(div=>{
       for(let star=1; star<=5; star++){
-        steps.push({ label:${group} ${div} ★${star}, group });
+        steps.push({ label:`${group} ${div} ★${star}`, group });
       }
     });
   });
 
-  for(let s=1;s<=24;s++)   steps.push({label:Mythic ★${s}, group:"Mythic"});
-  for(let s=25;s<=49;s++)  steps.push({label:Mythic Honor ★${s}, group:"Mythic Honor"});
-  for(let s=50;s<=99;s++)  steps.push({label:Mythic Glory ★${s}, group:"Mythic Glory"});
-  for(let s=100;s<=150;s++)steps.push({label:Mythic Immortal ★${s}, group:"Mythic Immortal"});
+  for(let s=1;s<=24;s++)   steps.push({label:`Mythic ★${s}`, group:"Mythic"});
+  for(let s=25;s<=49;s++)  steps.push({label:`Mythic Honor ★${s}`, group:"Mythic Honor"});
+  for(let s=50;s<=99;s++)  steps.push({label:`Mythic Glory ★${s}`, group:"Mythic Glory"});
+  for(let s=100;s<=150;s++)steps.push({label:`Mythic Immortal ★${s}`, group:"Mythic Immortal"});
 
   return steps;
 }
@@ -68,14 +68,14 @@ function calc(){
   if(steps === 0) etaEl.textContent = "-";
   else{
     const jam = Math.max(1, Math.round(steps * ETA_PER_STAR_HOUR));
-    etaEl.textContent = ${jam}–${jam+1} jam;
+    etaEl.textContent = `${jam}–${jam+1} jam`;
   }
 
   return { total, steps };
 }
 
 function initSelects(){
-  const opts = RANK_STEPS.map(s=><option>${s.label}</option>).join("");
+  const opts = RANK_STEPS.map(s=>`<option>${s.label}</option>`).join("");
   fromRank.innerHTML = opts;
   toRank.innerHTML   = opts;
 
@@ -123,7 +123,7 @@ async function sendToDatabase(){
 
     if(!res.ok) throw new Error("gagal");
 
-    statusMsg.textContent = "✔ Berhasil dikirim!";
+    statusMsg.textContent = "✔️ Berhasil dikirim!";
     statusMsg.style.color = "#4ade80";
 
   }catch(e){
